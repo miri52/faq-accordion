@@ -3,9 +3,10 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon,
   Box,
+  Heading,
 } from "@chakra-ui/react";
+import { MinusIcon, PlusIcon, StarIcon } from "../Icon/Icon";
 
 const questions = [
   {
@@ -38,23 +39,34 @@ building.`,
   },
 ];
 
-// todo: aria-expanded = true -> toggle icon (state)
-
 function Accordion() {
   return (
     <ChakraAccordion allowToggle>
-      FAQs
+      <Heading as="h1" fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}>
+        <Box display="flex" alignItems={"center"} pl={4}>
+          <StarIcon w={30} h={31} color={"brand.highlightPurple"} mr={4} />
+          FAQs
+        </Box>
+      </Heading>
       {questions.map((el) => (
         <AccordionItem key={el.id}>
-          <h2>
-            <AccordionButton>
-              <Box as="span" flex="1" textAlign="left">
-                {el.question}
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>{el.answer}</AccordionPanel>
+          {({ isExpanded }) => (
+            <>
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    {el.question}
+                  </Box>
+                  {isExpanded ? (
+                    <MinusIcon w={31} h={31} />
+                  ) : (
+                    <PlusIcon color={"brand.highlightPurple"} w={31} h={31} />
+                  )}
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>{el.answer}</AccordionPanel>
+            </>
+          )}
         </AccordionItem>
       ))}
     </ChakraAccordion>
