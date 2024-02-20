@@ -16,7 +16,8 @@ const baseStyle = definePartsStyle({
     boxShadow: "xl",
     p: 8,
     borderRadius: "xl",
-    bg: "white",
+    // bg: "white",
+    bg: "url(background-pattern-desktop.svg) !important",
   },
   container: {
     _first: { borderTop: "none" },
@@ -37,4 +38,4 @@ const baseStyle = definePartsStyle({
   panel: { color: "brand.purple", px: 0 },
 });
 
-export const accordionTheme = defineMultiStyleConfig({ baseStyle });
+export const Accordion = defineMultiStyleConfig({ baseStyle });
